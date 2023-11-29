@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="frmAjustarSalario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmCadastrarLicenca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmCadastroCargo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmCadastroFunc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmCadastroLicenca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmCadastroUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmGerenciarInfos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmHoletire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmOpcaoCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmPesquisarCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmPesquisarLicenca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmPesquisarUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmPesquisarFunc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmRelatoriosGerais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

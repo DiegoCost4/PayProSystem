@@ -1,0 +1,14 @@
+Nome	Salário
+Mateus	7350
+Diego Costa Ferreira 	12250
+teste	7000
+Johnathan	12250
+Larissa Rodrigues	1
+Teste video cad	1
+grege	1
+Carlos	14000
+Teste Licença	7350
+Diego Costa	13125
+Diego	131250
+
+Total	R$ 204.578,00
