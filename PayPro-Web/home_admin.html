@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Administrador</title>
+    <!-- Adicione o link do Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 56px;
+            /* Altura da Navbar fixa */
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #007bff;
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            /* Ajuste a altura conforme necessário */
+            margin-right: 10px;
+            filter: brightness(10);
+            /* Ajuste o brilho conforme necessário */
+        }
+
+        .container {
+            margin-top: 15%;
+        }
+
+        .wrap {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .option-card {
+            flex: 0 0 calc(20% - 20px);
+            /* 33.33% para ocupar 1/3 da largura, -20px para a margem */
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="./img/PayPro_System__1_-removebg-preview.png" alt="Logo da Empresa"> PayPro System
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#cadastrar">Cadastrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#gerar-holerite">Gerar Holerite</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#ajustar-salario">Ajustar Salário</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#gerenciar-informacoes">Gerenciar Informações</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#relatorios-gerais">Relatórios Gerais</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Conteúdo da Página -->
+    <div class="container">
+        <div class="wrap">
+            <div class="option-card" data-toggle="modal" data-target="#cadastroModal">Cadastrar</div>
+            <div class="option-card" data-toggle="modal" data-target="#gerarHoleriteModal">Gerar Holerite</div>
+            <div class="option-card" data-toggle="modal" data-target="#ajusteSalarioModal">Ajustar Salário</div>
+            <div class="option-card" data-toggle="modal" data-target="#gerenciarInformacoesModal">Gerenciar Informações
+            </div>
+            <div class="option-card" data-toggle="modal" data-target="#relatoriosGeraisModal">Relatórios Gerais</div> 
+        </div>
+    </div>
+    <!-- Modal de Cadastro -->
+    <div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cadastroModalLabel">Escolha o que deseja cadastrar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group">
+                        <button type="button" class="list-group-item list-group-item-action"
+                            onclick="navigateToCadastro('funcionario')">Funcionário</button>
+                        <button type="button" class="list-group-item list-group-item-action"
+                            onclick="navigateToCadastro('usuario')">Usuário</button>
+                        <button type="button" class="list-group-item list-group-item-action"
+                            onclick="navigateToCadastro('cargo')">Cargo</button>
+                        <button type="button" class="list-group-item list-group-item-action"
+                            onclick="navigateToCadastro('licenca')">Licença</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de Formulario -->
+    <div class="modal fade" id="cadastroFuncionarioModal" tabindex="-1" role="dialog"
+        aria-labelledby="cadastroFuncionarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cadastroFuncionarioModalLabel">Cadastrar Funcionário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulário de Cadastro -->
+                    <form id="cadastroFuncionarioForm">
+                        <div class="form-group">
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Digite o nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">CPF:</label>
+                            <input type="text" class="form-control" id="cpf" placeholder="Digite o CPF">
+                        </div>
+                        <div class="form-group">
+                            <label for="adress">Endereço:</label>
+                            <input type="text" class="form-control" id="adress" placeholder="Digite o endereço">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone:</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Digite o Telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="office">Cargo:</label>
+                            <input type="text" class="form-control" id="office" placeholder="Digite o Cargo">
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">Salário:</label>
+                            <input type="text" class="form-control" id="salary" placeholder="Digite o Salário">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="button" class="btn btn-secondary"
+                            onclick="atualizarFuncionario()">Atualizar</button>
+                        <button type="button" class="btn btn-danger" onclick="excluirFuncionario()">Excluir</button>
+                        <button type="button" class="btn btn-info" onclick="pesquisarFuncionario()">Pesquisar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de Cadastro de Usuários -->
+    <div class="modal fade" id="cadastroUsuarioModal" tabindex="-1" role="dialog"
+        aria-labelledby="cadastroUsuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cadastroUsuarioModalLabel">Cadastrar Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulário de Cadastro de Usuários -->
+                    <form id="cadastroUsuarioForm">
+                        <div class="form-group">
+                            <label for="user">Usuário:</label>
+                            <input type="text" class="form-control" id="user" placeholder="Digite o nome de usuário">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Senha:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Digite a senha">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Digite o e-mail">
+                        </div>
+                        <div class="form-group">
+                            <label for="userType">Tipo de Usuário:</label>
+                            <input type="text" class="form-control" id="userType"
+                                placeholder="Digite o tipo de usuário">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="button" class="btn btn-secondary" onclick="atualizarUsuario()">Atualizar</button>
+                        <button type="button" class="btn btn-danger" onclick="excluirUsuario()">Excluir</button>
+                        <button type="button" class="btn btn-info" onclick="pesquisarUsuario()">Pesquisar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de Cadastro de Cargo -->
+    <div class="modal fade" id="cadastroCargoModal" tabindex="-1" role="dialog"
+        aria-labelledby="cadastroCargoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cadastroCargoModalLabel">Cadastrar Cargo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulário de Cargos -->
+                    <form id="cadastroCargoForm">
+                        <div class="form-group">
+                            <label for="cargo">Cargo:</label>
+                            <input type="text" class="form-control" id="cargo" placeholder="Digite o Cargo">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="button" class="btn btn-secondary" onclick="atualizarCargo()">Atualizar</button>
+                        <button type="button" class="btn btn-danger" onclick="excluirCargo()">Excluir</button>
+                        <button type="button" class="btn btn-info" onclick="pesquisarCargo()">Pesquisar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de Cadastro de Licença -->
+    <div class="modal fade" id="cadastroLicencaModal" tabindex="-1" role="dialog"
+        aria-labelledby="cadastroLicencaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cadastroLicencaModalLabel">Cadastrar Licença</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulário de Licença -->
+                    <form id="cadastroLicencaForm">
+                        <div class="form-group">
+                            <label for="tipo">Tipo:</label>
+                            <input type="text" class="form-control" id="tipo" placeholder="Digite o Tipo">
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao">Descrição:</label>
+                            <textarea class="form-control" id="descricao" placeholder="Digite a Descrição"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="button" class="btn btn-secondary" onclick="atualizarLicenca()">Atualizar</button>
+                        <button type="button" class="btn btn-danger" onclick="excluirLicenca()">Excluir</button>
+                        <button type="button" class="btn btn-info" onclick="pesquisarLicenca()">Pesquisar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de Gerar Holerite -->
+    <div class="modal fade" id="gerarHoleriteModal" tabindex="-1" role="dialog"
+        aria-labelledby="gerarHoleriteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gerarHoleriteModalLabel">Gerar Holerite</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="funcionarioId">ID do Funcionário:</label>
+                        <input type="text" class="form-control" id="funcionarioId" placeholder="ID do Funcionário"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="funcionarioNome">Nome do Funcionário:</label>
+                        <input type="text" class="form-control" id="funcionarioNome" placeholder="Nome do Funcionário"
+                            readonly>
+                    </div>
+
+                    <!-- Botões de Pesquisar e Gerar Holerite -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-info"
+                                onclick="abrirPesquisaFuncionarioModal()">Pesquisar</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-success" onclick="gerarHolerite()">Gerar
+                                Holerite</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ... Seu código HTML anterior ... -->
+
+    <!-- Modal de Ajuste de Salário -->
+    <div class="modal fade" id="ajusteSalarioModal" tabindex="-1" role="dialog"
+        aria-labelledby="ajusteSalarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ajusteSalarioModalLabel">Ajuste de Salário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="codigoFuncionario">Código:</label>
+                        <input type="text" class="form-control" id="codigoFuncionario"
+                            placeholder="Código do Funcionário" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomeFuncionario">Nome do Funcionário:</label>
+                        <input type="text" class="form-control" id="nomeFuncionario" placeholder="Nome do Funcionário"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="salarioAtual">Salário Atual:</label>
+                        <input type="text" class="form-control" id="salarioAtual" placeholder="Salário Atual" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="novoSalario">Novo Salário:</label>
+                        <input type="text" class="form-control" id="novoSalario" placeholder="Digite o Novo Salário">
+                    </div>
+
+                    <!-- Botões de Pesquisar e Ajustar Salário -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-info"
+                                onclick="abrirPesquisaAjusteSalarioModal()">Pesquisar</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-secondary"
+                                onclick="atualizarSalario()">Atualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de Gerenciar Informações -->
+    <div class="modal fade" id="gerenciarInformacoesModal" tabindex="-1" role="dialog"
+        aria-labelledby="gerenciarInformacoesModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gerenciarInformacoesModalLabel">Gerenciar Informações</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulário de Gerenciar Informações -->
+                    <form id="gerenciarInformacoesForm">
+                        <div class="form-group">
+                            <label for="codigo">Código:</label>
+                            <input type="text" class="form-control" id="codigo" placeholder="Código" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="nomeFuncionario">Nome do Funcionário:</label>
+                            <input type="text" class="form-control" id="nomeFuncionario"
+                                placeholder="Nome do Funcionário" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipoLicenca">Tipo de Licença:</label>
+                            <select class="form-control" id="tipoLicenca">
+                                <option value="ferias">Férias</option>
+                                <option value="licencaMaternidade">Licença Maternidade</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dataInicio">Data de Início:</label>
+                            <input type="date" class="form-control" id="dataInicio" placeholder="Data de Início">
+                        </div>
+                        <div class="form-group">
+                            <label for="dataFinal">Data Final:</label>
+                            <input type="date" class="form-control" id="dataFinal" placeholder="Data Final">
+                        </div>
+
+                        <button type="button" class="btn btn-primary"
+                            onclick="pesquisarFuncionario()">Pesquisar</button>
+                        <button type="button" class="btn btn-success"
+                            onclick="gerenciarInformacoes()">Confirmar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de Relatórios Gerais -->
+    <div class="modal fade" id="relatoriosGeraisModal" tabindex="-1" role="dialog"
+        aria-labelledby="relatoriosGeraisModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="relatoriosGeraisModalLabel">Relatórios Gerais</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulário de Relatórios Gerais -->
+                    <form id="relatoriosGeraisForm">
+                        <div class="form-group">
+                            <label for="tipoRelatorio">Tipo de Relatório:</label>
+                            <select class="form-control" id="tipoRelatorio">
+                                <option value="relatorio1">Relatório 1</option>
+                                <option value="relatorio2">Relatório 2</option>
+                                <option value="relatorio3">Relatório 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="periodoInicio">Período de Início:</label>
+                            <input type="date" class="form-control" id="periodoInicio" placeholder="Período de Início">
+                        </div>
+                        <div class="form-group">
+                            <label for="periodoFim">Período Final:</label>
+                            <input type="date" class="form-control" id="periodoFim" placeholder="Período Final">
+                        </div>
+
+                        <button type="button" class="btn btn-primary" onclick="gerarRelatorio()">Gerar
+                            Relatório</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ... Seu código HTML posterior ... -->
+
+    <!-- Scripts do Bootstrap e outros scripts necessários -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
